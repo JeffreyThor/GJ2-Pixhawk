@@ -44,3 +44,11 @@ You'll see on the side of the Pixhawk there are 3 rows of 16 pins. We only need 
  3. Main outputs (we use these)
  4. Auxiliary outputs
 
+The outputs we use are pin 1 (steering) and pin 3 (throttle) of main output. The signal (bottom rail) will output a PWM signal to the respective control devices. The ground pin (top rail) we have used is pin 1 paired with the steering arduino connection. Remember, it's very important you have the correct signals going to the correct devices. Pin 1 (steering) goes to the arduino and pin 3 (throttle) goes to the teensy.
+
+More information for these devices and their code can be found below...
+
+[Steering/linear actuator](https://github.com/mazhigbee/GJ2)
+[Throttle](https://github.com/nickdossantos/ginger_judge2)
+
+In short, the only 3 connections we care about are signal to steering, signal to throttle, and ground.
