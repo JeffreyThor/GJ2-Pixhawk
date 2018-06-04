@@ -1,4 +1,3 @@
-
 # GJ2-Pixhawk
 
 This documentation is for the **flight controller setup** on the Ginger Judge 2, but other pieces of this project will be referenced too. The Ginger Judge is a remotely-piloted research vessel with on board instrumentation. (The on-board instrumentation isn't exactly "on-board" yet, that can be a problem for v2.1)
@@ -52,3 +51,24 @@ More information for these devices and their code can be found below...
 [Throttle](https://github.com/nickdossantos/ginger_judge2)
 
 In short, the only 3 connections we care about are signal to steering, signal to throttle, and ground.
+
+### Ground Control
+
+This is going to be a brief rundown on what you need to know to use Mission Planner (the ground control station I chose to use for this project) to control the GJ2.
+
+![Mission Planner](https://lh3.googleusercontent.com/HaqpISNlPlEXRK7bH_BgUEFlz8bBQGs9WghVZxg6aoRJqW0_ozcohhsUEWyaB20HWTJxB47rOKlb "Mission Planner")
+This is what you will see when you launch Mission Planner. You can find everything a more detailed overview on the software at [their website](http://ardupilot.org/planner/) but I'll tell you a few things you need to know.
+
+You will be disconnected from the system when you first launch the software and knowing how to connect is important. You will select TCP in the dropdown to near the connect button in the top right. When you hit connect after that you will be prompted to enter an address. This address must be whatever address the raspberry pi is set up with. I'm not going to put that here as it shouldn't be public but you should have access to it if you're working on the project. Assuming the router on the GJ2 is up and running then you should connect successfully.
+
+This connection works because the raspberry pi is communicating with the Pixhawk via MAVLink protocol which was described earlier in **Connections**.
+
+### Parameters
+
+The ardupilot parameters get their own section because it's very important to understand what they are, what they do, and how to change them for this project.
+
+The Pixhawk is expecting to be running directly on a drone, plane, or rover. All of the testing and set up for the Pixhawk for our project had to be done off the boat which ended up being difficult. There are tons of safety parameters that won't allow the system to arm or launch if requirements aren't met. The parameters that were left on the device at the end of the original Ginger Judge 2 development allow for the system to arm and launch under almost any circumstance, connected or disconnected from the system.
+
+If for some reason these parameters are lost or the Pixhawk needs to be reflashed with new firmware and started from scratch then you'll need to work through all the arming checks that don't allow the system to activate and disable any restricting parameters. These parameters can change depending on firmware or version so keep in mind you may need to do some googling to find out which parameter does what. Disabling RC input requirement for example. This one is important since we have no RC controller or input.
+
+A full parameter list can be found [here](http://ardupilot.org/copter/docs/parameters.html).
